@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Home page</h1>
+    <hr>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+        <button type="submit" style="border: 0px; background-color: white;">logout</button>
+    </form>
+    {% else %}
+        <form  style="display: inline;" action="{% url 'login' %}" method="get">
+            {% csrf_token %}
+            <button type="submit" style="border: 0px; background-color: white;">login</button>
+        </form>
+        |
+        <a style="color: black; text-decoration: none;" href="{% url 'register' %}">register</a>
+    {% endif %}
+{% endblock %}
